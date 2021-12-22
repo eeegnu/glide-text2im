@@ -78,13 +78,13 @@ class Text2ImUNet(UNetModel):
         super().convert_to_fp16()
         if self.xf_width:
             self.transformer.apply(convert_module_to_f16)
-            self.transformer_proj.to(th.float16)
-            self.token_embedding.to(th.float16)
-            self.positional_embedding.to(th.float16)
+            self.transformer_proj.to(th.bfloat16)
+            self.token_embedding.to(th.bfloat16)
+            self.positional_embedding.to(th.bfloat16)
             if self.xf_padding:
-                self.padding_embedding.to(th.float16)
+                self.padding_embedding.to(th.bfloat16)
             if self.xf_ar:
-                self.unemb.to(th.float16)
+                self.unemb.to(th.bfloat16)
 
     def get_text_emb(self, tokens, mask):
         assert tokens is not None
