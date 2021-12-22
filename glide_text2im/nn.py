@@ -15,7 +15,7 @@ class GroupNorm32(nn.GroupNorm):
         self.swish = swish
 
     def forward(self, x):
-        y = super().forward(x.float()).to(x.dtype)
+        y = super().forward(x)
         if self.swish == 1.0:
             y = F.silu(y)
         elif self.swish:
