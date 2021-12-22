@@ -10,7 +10,7 @@ import torch.nn.functional as F
 
 
 class GroupNorm32(nn.GroupNorm):
-    def __init__(self, num_groups, num_channels, swish, eps=1e-5):
+    def __init__(self, num_groups, num_channels, swish, eps=th.tensor(1e-5,dtype=th.bfloat16)):
         super().__init__(num_groups=num_groups, num_channels=num_channels, eps=eps)
         self.swish = swish
 
